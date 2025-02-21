@@ -1,0 +1,17 @@
+{
+  "name": "webserverinclassproject",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Web Server Programming - In Class Project",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
