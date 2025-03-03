@@ -1,30 +1,33 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import NavBar from './components/NavBar.vue'
+
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <header>
+    <NavBar />
+  </header>
+
+  <div class="container body-container">
+    <NotificationList />
+    <RouterView />
   </div>
-  <HelloWorld msg="Vite + Vue" />
+
+  <SlidingDrawer>
+    <ShoppingCart />
+  </SlidingDrawer>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style>
+body {
+  background-color: aliceblue;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.body-container {
+  background-color: white;
+  height: 100vh;
+  padding: 1rem;
 }
 </style>
