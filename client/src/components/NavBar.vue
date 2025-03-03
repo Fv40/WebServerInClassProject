@@ -1,25 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isActive = ref(false);
+const isActive = ref(false)
 </script>
 
 <template>
-    <nav class="navbar is-info" role="nagivation" aria-label="main navigation">
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class ="navbar-item" href="http://example.com">
-                    <img alt="Vue logo" class="logo" src="@/assets/vue.svg" width="30" />
+                <a class="navbar-item" href="http://example.com">
+                    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" />
                 </a>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" :class="{ 'is-active': isActive }" @click="isActive = !isActive">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                   :class="{ 'is-active': isActive }" @click="isActive = !isActive">
+                    <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
 
-            <div class="navbar-menu" :class="{ 'is-active': isActive}">
+            <div class="navbar-menu" :class="{ 'is-active': isActive }">
                 <div class="navbar-start">
                     <RouterLink to="/" class="navbar-item">Home</RouterLink>
                     <RouterLink to="/about" class="navbar-item">About</RouterLink>
@@ -29,7 +31,7 @@ const isActive = ref(false);
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">More</a>
 
-                        <div>
+                        <div class="navbar-dropdown">
                             <a class="navbar-item">About</a>
                             <a class="navbar-item">Jobs</a>
                             <a class="navbar-item">Contact</a>
