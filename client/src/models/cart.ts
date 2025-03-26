@@ -25,7 +25,7 @@ export function addToCart(product: Product, quantity: number = 1) {
     })
   } else {
     cart.value.push({ product, quantity })
-    
+
     addNotification({
       message: `Added ${quantity} ${product.title} to cart`,
       type: 'success',
