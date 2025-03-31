@@ -9,7 +9,7 @@ app
   .get("/", (req, res) => {
     res.send("Hello New Paltz, NY!!!");
   })
-  .use("/products", productsController)
+  .use("/api/v1/products", productsController)
   .listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
   });
