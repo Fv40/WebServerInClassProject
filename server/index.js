@@ -1,6 +1,5 @@
 const PORT = 8000;
 
-const express = require("express");
 const productsController = require("./controllers/products");
 const express = require("express");
 
@@ -11,9 +10,10 @@ app.use(express.json()); // Parse JSON from request body
 
 // Controllers
 app
-  .get("/", (req, res) => {
+  .get("/hello", (req, res) => {
     res.send("Hello New Paltz, NY!!!");
   })
+  .use('/', express.static('dist')) 
   .use("/api/v1/products", productsController)
   .listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
