@@ -1,6 +1,25 @@
 import products from '../data/products.json'
 import type { DataListEnvelope } from './dataEnvelopes'
 
+export interface ProductDimensions {
+  width: number
+  height: number
+  depth: number
+}
+
+export interface ProductReview {
+  rating: number
+  comment: string
+  date: string
+  reviewerName: string
+  reviewerEmail: string
+}
+
+export interface ProductMeta {
+  createdAt: string
+  updatedAt: string
+}
+
 export interface Product {
   id: number
   title: string
@@ -24,34 +43,15 @@ export interface Product {
   thumbnail?: string
 }
 
-export interface ProductDimensions {
-  width: number
-  height: number
-  depth: number
-}
-
-export interface ProductReview {
-  rating: number
-  comment: string
-  date: string
-  reviewerName: string
-  reviewerEmail: string
-}
-
-export interface ProductMeta {
-  createdAt: string
-  updatedAt: string
-}
-
-export function getAllProducts() {
+export function getAll() {
   return products as DataListEnvelope<Product>
 }
 
-export function getProduct(id: string) {
+export function getOne(id: string) {
   return products.items.find((item) => item.id == +id) as Product
 }
 
-getAllProducts().items.push({
+getAll().items.push({
   id: 100,
   title: 'Test Product',
   description: 'This is a test product',
