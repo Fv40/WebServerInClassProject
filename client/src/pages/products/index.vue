@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { getAllProducts, type Product } from '@/models/products'
+import { getAll, type Product } from '@/models/products'
 import { addToCart } from '@/models/cart'
 
-const products = getAllProducts()
+const products = getAll()
 
 function doAddToCart(product: Product) {
   addToCart(product)
