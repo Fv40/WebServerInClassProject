@@ -5,8 +5,10 @@
   "description": "Web Server Programming - In Class Project",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
-  },
+    "dev": "nodemon server/index.js --watch server",
+    "build:client": "npm run build --prefix client",
+    "build": "npm i --prefix client && npm run build:client"
+},
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"

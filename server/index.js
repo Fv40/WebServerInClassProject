@@ -11,10 +11,11 @@ app.use(express.json()); // Parse JSON from request body
 
 // Controllers
 app
-  .get("/", (req, res) => {
+  .get("/hello", (req, res) => {
     res.send("Hello New Paltz, NY!!!");
   })
   .use("/api/v1/products", productsController)
+  .use("/", express.static("dist")) 
   .listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
   });
