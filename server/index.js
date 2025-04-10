@@ -1,7 +1,8 @@
-const PORT = 8000;
+const productsController = require("./controllers/products")
+const usersController = require("./controllers/users")
+const express = require("express")
 
-const productsController = require("./controllers/products");
-const express = require("express");
+const PORT = 8000;
 
 const app = express();
 
@@ -14,6 +15,7 @@ app
     res.send("Hello New Paltz, NY!!!");
   })
   .use("/api/v1/products", productsController)
+  .use("/api/v1/users", ) 
   .use("/", express.static("dist")) 
   .listen(PORT, () => {
     console.log(`Server started at http://localhost:${PORT}`);
