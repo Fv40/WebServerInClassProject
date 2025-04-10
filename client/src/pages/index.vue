@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <h1 class="title" style="color: darkorchid;">Anonymous Feedback Form</h1>
+    <h1 class="title">Anonymous Feedback Form</h1>
     <h2 class="subtitle">Enter your feedback here...</h2>
     <form action="#" class="form" method="post">
       <textarea class="textarea" placeholder="Tell me about your favorite class"> </textarea>
