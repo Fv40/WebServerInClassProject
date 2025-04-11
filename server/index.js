@@ -1,8 +1,9 @@
-const productsController = require("./controllers/products")
-const usersController = require("./controllers/users")
-const express = require("express")
+const productsController = require("./controllers/products");
+const usersController = require("./controllers/users");
+const express = require("express");
+require("dotenv").config();
 
-const PORT = 8000;
+const PORT = process.env.PORT ?? 8000;
 
 const app = express();
 
@@ -15,10 +16,13 @@ app
     res.send("Hello New Paltz, NY!!!");
   })
   .use("/api/v1/products", productsController)
-  .use("/api/v1/users", ) 
-  .use("/", express.static("dist")) 
+  .use("/api/v1/users", usersController)
+  .use("/", express.static("dist"))
   .listen(PORT, () => {
-    console.log(`Server started at http://localhost:${PORT}`);
+    console.log(`
+      Welcome to the best class at New Paltz - ${process.env.BEST_CLASS}
+      Server running at http://localhost:${PORT}/
+    `);
   });
 
 // Error handling
