@@ -21,11 +21,31 @@ router
       })
       .catch(next);
   })
+  .get("/search/:query", (req, res, next) => {
+    const { query } = req.params;
+
+    model
+      .search(query)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch(next);
+  })
   .post("/", (req, res, next) => {
     const newValues = req.body;
 
     model
       .create(newValues)
+      .then((data) => {
+        res.status(201).send(data);
+      })
+      .catch(next);
+  })
+  .post("/seed", (req, res, next) => {
+    const { data } = req.body;
+
+    model
+      .seed(data)
       .then((data) => {
         res.status(201).send(data);
       })
