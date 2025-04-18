@@ -77,3 +77,8 @@ CREATE TABLE order_items (
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 CREATE INDEX idx_order_items_order_id ON order_items(order_id);
 CREATE INDEX idx_order_items_product_id ON order_items(product_id);
+-- Give permissions for aggregate functions
+ALTER ROLE authenticator
+SET pgrst.db_aggregates_enabled = 'true';
+NOTIFY pgrst,
+'reload config';
