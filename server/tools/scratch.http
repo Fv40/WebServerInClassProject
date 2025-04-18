@@ -16,7 +16,8 @@ Content-Type: application/json
   "description": "This is a new product",
   "price": 100,
   "category": "electronics",
-  "stock": 50
+  "stock": 50,
+  "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTdmYjExZGMtMTMzNi00OGYxLTgwOTAtMjhkMDM1ZTk4YzcyXkEyXkFqcGdeQXVyMTE5NTYwNDI2._V1_.jpg"
 }
 
 ###
@@ -29,3 +30,6 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/api/v1/products/1
+
+###
+POST http://localhost:3000/api/v1/products/seed

@@ -1,4 +1,4 @@
-import products from '../data/products.json'
+import { api } from './session.ts'
 import type { DataListEnvelope } from './dataEnvelopes'
 
 export interface ProductDimensions {
@@ -44,17 +44,9 @@ export interface Product {
 }
 
 export function getAll() {
-  return products as DataListEnvelope<Product>
+  return api<DataListEnvelope<Product>>('products')
 }
 
 export function getOne(id: string) {
-  return products.items.find((item) => item.id == +id) as Product
+  return api<Product>(`products/${id}`)
 }
-
-getAll().items.push({
-  id: 100,
-  title: 'Test Product',
-  description: 'This is a test product',
-  category: 'test',
-  price: 100,
-})
