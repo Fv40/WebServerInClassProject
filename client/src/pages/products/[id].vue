@@ -3,7 +3,7 @@ import { getOne } from '@/models/products'
 import { useRoute } from 'vue-router'
 
 const route = useRoute('/products/[id]')
-const product = getOne(route.params.id as string)
+const product = await getOne(route.params.id as string)
 </script>
 
 <template>
