@@ -9,7 +9,7 @@ const BaseQuery = () =>
     .from(TABLE_NAME)
     .select("*, product_reviews(average_rating:rating.avg())");
 
-async function getAll() {
+async function getAll(limit = 30, offset = 0, sort = "id", order = "desc") {
   const list = await BaseQuery();
   if (list.error) {
     throw list.error;
@@ -44,15 +44,30 @@ async function get(id) {
   }
 }
 
-async function search(query) {
-  const { data: items, error } = await  BaseQuery()
-    .or(`title.ilike.%${query}%,description.ilike.%${query}%`);
+async function search(
+  query,
+  limit = 30,
+  offset = 0,
+  sort = "id",
+  order = "desc"
+) {
+  const {
+    data: items,
+    error,
+    count,
+  } = await BaseQuery()
+    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
 
   if (error) {
     throw error;
   }
 
-  return items;
+  return {
+    items,
+    total: count,
+  };
 }
 
 async function create(item) {

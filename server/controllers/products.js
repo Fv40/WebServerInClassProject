@@ -4,8 +4,10 @@ const model = require("../models/products");
 
 router
   .get("/", (req, res, next) => {
+    const { limit, offset, sort, order } = req.query;
+
     model
-      .getAll()
+      .getAll(convertToNum(limit), convertToNum(offset), sort, order)
       .then((data) => {
         res.send(data);
       })
@@ -23,9 +25,10 @@ router
   })
   .get("/search/:query", (req, res, next) => {
     const { query } = req.params;
+    const { limit, offset, sort, order } = req.query;
 
     model
-      .search(query)
+      .search(query, convertToNum(limit), convertToNum(offset), sort, order)
       .then((data) => {
         res.send(data);
       })
@@ -74,3 +77,7 @@ router
   });
 
 module.exports = router;
+
+function convertToNum(value) {
+  return value ? +value : undefined
+}
