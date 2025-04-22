@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute('/products/[id]')
 const product = ref<Product>();
 
-getOne(route.params.id)
+getOne(route.params.id as string)
   .then((response) => {
     product.value = response;
   })
