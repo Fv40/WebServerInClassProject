@@ -40,7 +40,7 @@ async function get(id) {
       throw error;
     }
 
-    return item;
+    return item[0];
   }
 }
 
