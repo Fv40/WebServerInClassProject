@@ -5,7 +5,7 @@ http://localhost:3000/api/v1/products
 GET http://localhost:3000/api/v1/products/search/the?limit=10&sort=price&order=asc
 
 ###
-GET http://localhost:3000/api/v1/products/1
+GET http://localhost:3000/api/v1/products/51
 
 ###
 POST http://localhost:3000/api/v1/products
@@ -33,3 +33,15 @@ DELETE http://localhost:3000/api/v1/products/1
 
 ###
 POST http://localhost:3000/api/v1/products/seed
+
+###
+GET http://localhost:3000/api/v1/users
+
+###
+GET http://localhost:3000/api/v1/users/1
+ 
+###
+GET http://localhost:3000/api/v1/users/search/Gonzalez?limit=10&sort=firstName&order=asc
+
+###
+POST http://localhost:3000/api/v1/users/seed

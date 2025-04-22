@@ -3,18 +3,24 @@ const { CustomError, statusCodes } = require("./errors");
 const { connect } = require("./supabase");
 
 const TABLE_NAME = "products";
-const isAdmin = true;
+
 const BaseQuery = () =>
   connect()
     .from(TABLE_NAME)
-    .select("*, product_reviews(average_rating:rating.avg())");
+    .select("*, product_reviews(average_rating:rating.avg())", {
+      count: "estimated",
+    });
+//.select('*')
+
+const isAdmin = true;
 
 async function getAll(limit = 30, offset = 0, sort = "id", order = "desc") {
-  const list = await BaseQuery();
+  const list = await BaseQuery()
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
   if (list.error) {
     throw list.error;
   }
-
   return {
     items: list.data,
     total: list.count,
@@ -26,22 +32,13 @@ async function get(id) {
     .from(TABLE_NAME)
     .select("*, product_reviews(*)")
     .eq("id", id);
-
-  if (!item) {
-    const { data: item, error } = await connect()
-      .from(TABLE_NAME)
-      .select("*")
-      .eq("id", id);
-    if (!item.length) {
-      throw new CustomError("Item not found", statusCodes.NOT_FOUND);
-    }
-
-    if (error) {
-      throw error;
-    }
-
-    return item[0];
+  if (!item.length) {
+    throw new CustomError("Item not found", statusCodes.NOT_FOUND);
   }
+  if (error) {
+    throw error;
+  }
+  return item[0];
 }
 
 async function search(
@@ -59,11 +56,9 @@ async function search(
     .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
     .order(sort, { ascending: order === "asc" })
     .range(offset, offset + limit - 1);
-
   if (error) {
     throw error;
   }
-
   return {
     items,
     total: count,
@@ -77,7 +72,6 @@ async function create(item) {
       statusCodes.UNAUTHORIZED
     );
   }
-
   const { data: newItem, error } = await connect()
     .from(TABLE_NAME)
     .insert(item)
@@ -85,7 +79,6 @@ async function create(item) {
   if (error) {
     throw error;
   }
-
   return newItem;
 }
 
@@ -96,17 +89,14 @@ async function update(id, item) {
       statusCodes.UNAUTHORIZED
     );
   }
-
   const { data: updatedItem, error } = await connect()
     .from(TABLE_NAME)
     .update(item)
     .eq("id", id)
     .select("*");
-
   if (error) {
     throw error;
   }
-
   return updatedItem;
 }
 
@@ -117,16 +107,13 @@ async function remove(id) {
       statusCodes.UNAUTHORIZED
     );
   }
-
   const { data: deletedItem, error } = await connect()
     .from(TABLE_NAME)
     .delete()
     .eq("id", id);
-
   if (error) {
     throw error;
   }
-
   return deletedItem;
 }
 
@@ -137,7 +124,6 @@ async function seed() {
       .from(TABLE_NAME)
       .insert(insert)
       .select("*");
-
     if (error) {
       throw error;
     }
@@ -160,6 +146,7 @@ async function seed() {
 
 function mapToDB(item) {
   return {
+    //id: item.id,
     title: item.title,
     description: item.description,
     category: item.category,

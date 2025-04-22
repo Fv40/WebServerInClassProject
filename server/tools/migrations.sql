@@ -2,13 +2,13 @@
 -- Create the users table
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     gender VARCHAR(50),
     email VARCHAR(255) UNIQUE NOT NULL,
     phone VARCHAR(50),
-    birth_date DATE,
+    birthDate DATE,
     image TEXT,
     university VARCHAR(255),
     role VARCHAR(50) NOT NULL
@@ -46,7 +46,7 @@ CREATE TABLE product_reviews (
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     reviewer_name VARCHAR(255),
     reviewer_email VARCHAR(255),
-    reviewer_id INT(4)
+    reviewer_id INT
 );
 -- Add indexes for performance optimization
 CREATE INDEX idx_products_category ON products(category);
@@ -70,8 +70,6 @@ CREATE TABLE order_items (
     product_id INT REFERENCES products(id) ON DELETE CASCADE,
     quantity INT NOT NULL,
     price NUMERIC(10, 2) NOT NULL
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
 -- Add indexes for performance optimization
 CREATE INDEX idx_orders_user_id ON orders(user_id);

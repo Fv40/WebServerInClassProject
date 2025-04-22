@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { refCart } from '@/models/cart'
+import LoginBadge from './LoginBadge.vue';
 
 const isActive = ref(false)
 const cart = refCart()
@@ -22,14 +23,8 @@ const event = defineEmits<{
           <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" />
         </a>
 
-        <a
-          role="button"
-          class="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          :class="{ 'is-active': isActive }"
-          @click="isActive = !isActive"
-        >
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+          :class="{ 'is-active': isActive }" @click="isActive = !isActive">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -60,22 +55,14 @@ const event = defineEmits<{
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <button
-              class="button is-light"
-              :class="{ 'is-active': props.isShoppingCartOpen }"
-              @click="event('update:isShoppingCartOpen', !props.isShoppingCartOpen)"
-            >
+            <button class="button is-light" :class="{ 'is-active': props.isShoppingCartOpen }"
+              @click="event('update:isShoppingCartOpen', !props.isShoppingCartOpen)">
               <span class="icon"> <i class="fas fa-shopping-cart"></i></span>
             </button>
             <span class="cart-length tag is-danger">{{ cart.length }}</span>
           </div>
           <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light"> Log in </a>
-            </div>
+            <LoginBadge />
           </div>
         </div>
       </div>
