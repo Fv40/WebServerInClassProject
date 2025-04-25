@@ -2,7 +2,7 @@ import type { DataListEnvelope } from './dataEnvelopes'
 import { api } from './session'
 
 export interface User {
-  id: string
+  id: number
   firstName: string
   lastName: string
   email: string
@@ -19,7 +19,7 @@ export function getAll(): Promise<DataListEnvelope<User>> {
   return api('users')
 }
 
-export function get(id: string): Promise<User> {
+export function get(id: number): Promise<User> {
   return api(`users/${id}`)
 }
 

@@ -19,7 +19,7 @@ export const isAdmin = () => session.value?.user?.role === 'admin'
 
 export const isLoggedIn = () => session.value?.user !== null
 
-export function login(id: string) {
+export function login(id: number) {
   return get(id).then((user) => {
     session.value.user = user
   })

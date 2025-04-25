@@ -1,4 +1,5 @@
 import { api } from './session.ts'
+import type { User } from './users'
 import type { DataListEnvelope } from './dataEnvelopes'
 
 export interface ProductDimensions {
@@ -8,11 +9,16 @@ export interface ProductDimensions {
 }
 
 export interface ProductReview {
+  id: number
+  product_id: number
+  reviewer_id: number
   rating: number
   comment: string
   date: string
-  reviewerName: string
-  reviewerEmail: string
+  product?: Product
+  reviewer?: User
+  // reviewerName: string
+  // reviewerEmail: string
 }
 
 export interface ProductMeta {
@@ -26,7 +32,7 @@ export interface Product {
   description: string
   category: string
   price: number
-  rating?: number
+  // rating?: number
   stock?: number
   tags?: string[]
   brand?: string
