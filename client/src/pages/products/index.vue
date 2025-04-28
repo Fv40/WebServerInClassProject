@@ -27,6 +27,7 @@ function doAddToCart(product: Product) {
           </RouterLink>
         </div>
         <div class="product-info">
+          <b-rate :model-value="(p as any)?.product_reviews[0]?.average_rating" disabled show-score></b-rate>
           <h2>{{ p.title }}</h2>
           <p>{{ p.description }}</p>
           <span class="price">${{ p.price }}</span>
@@ -38,6 +39,10 @@ function doAddToCart(product: Product) {
 </template>
 
 <style scoped>
+.rate {
+  float: right;
+}
+
 .button.is-success {
   float: right;
 }

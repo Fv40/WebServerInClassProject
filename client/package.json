@@ -19,7 +19,8 @@
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "webserverinclassproject": "file:..",
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.13",
+    "buefy": "npm:@ntohq/buefy-next@^0.2.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
