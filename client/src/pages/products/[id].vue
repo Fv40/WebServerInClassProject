@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { getOne, type Product } from '@/models/products';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+
+dayjs.extend(relativeTime);
 
 const route = useRoute('/products/[id]')
 const product = ref<Product>();
@@ -38,6 +42,7 @@ getOne(route.params.id as string)
                 <strong>{{ review.reviewer?.firstName }} {{ review.reviewer?.lastName }}</strong> - {{
                   review.rating }} stars
                 <p>{{ review.comment }}</p>
+                <i>{{ dayjs(review.date).fromNow() }}</i>
               </div>
 
             </li>
